@@ -2,6 +2,7 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 16px;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -11,23 +12,51 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* For smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Responsive font sizing */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
 }
 
 a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
+  transition: color 0.2s ease;
 }
+
 a:hover {
   color: #535bf2;
+}
+
+a:focus {
+  outline: 2px solid #646cff;
+  outline-offset: 2px;
 }
 
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling on mobile */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  margin-top: 0;
 }
 
 h1 {
@@ -44,14 +73,32 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s;
 }
+
 button:hover {
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Improved accessibility for disabled buttons */
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 @media (prefers-color-scheme: light) {

@@ -2,17 +2,17 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="app">
-      <section className="hero">
+    <main className="app">
+      <header className="hero">
         <h1>
           Стас Корольов - тихоход української музичної сцени, якого не вбиває
           ані розпад гурта, ані повна зміна жанру, ані три тисячі переглядів на
           кліпі.
         </h1>
-      </section>
+      </header>
 
-      <section className="content">
-        <h2>Експозиція.</h2>
+      <section className="content" aria-labelledby="exposition-heading">
+        <h2 id="exposition-heading">Експозиція.</h2>
         <p>
           2003 рік. Грудень. Авдіївка. За два роки до цього моменту хлопчик
           Стас, не Стасік, Стас втратив око. Травма змусила його шукати в собі
@@ -37,8 +37,8 @@ function App() {
         </p>
       </section>
 
-      <section className="content">
-        <h2>Трансформація.</h2>
+      <section className="content" aria-labelledby="transformation-heading">
+        <h2 id="transformation-heading">Трансформація.</h2>
         <p>
           Ту трансформацію Стасу допомогла прожити його на той момент майбутня
           дружина — артистка та діджітал художниця Анастасія Весна
@@ -75,8 +75,8 @@ function App() {
         </p>
       </section>
 
-      <section className="content">
-        <h2>Перший сезон. О_х.</h2>
+      <section className="content" aria-labelledby="season-one-heading">
+        <h2 id="season-one-heading">Перший сезон. О_х.</h2>
         <p>
           В першому, дебютному сезоні, Стас зайшов з усіх карт, що мав, + нова
           навичка "режисура" + нова хай-левел-партнерка in crime, що виступає
@@ -102,8 +102,8 @@ function App() {
         </p>
       </section>
 
-      <section className="content">
-        <h2>Другий сезон. 🔍.</h2>
+      <section className="content" aria-labelledby="season-two-heading">
+        <h2 id="season-two-heading">Другий сезон. 🔍.</h2>
         <p>
           Перший сезон тривав менше ніж рік — і закінчився разом з
           повномасштабним вторгненням. Нові часи, нова реальність — відповідно,
@@ -156,12 +156,18 @@ function App() {
           Концерті допомогло зібрати мільйон гривень для Госпітальєрів, і закрив
           міні-триптих «🔍» про пошук:
         </p>
-        <div className="bandcamp-cards-container">
+        <div
+          className="bandcamp-cards-container"
+          aria-label="Музичні альбоми Стаса Корольова"
+        >
           <div className="bandcamp-card">
             <iframe
+              title="your princess is in another castle album"
               style={{ border: 0, width: "350px", height: "350px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=3139254868/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
               seamless
+              loading="lazy"
+              aria-label="Album: your princess is in another castle by Stas Koroliov"
             >
               <a href="https://staskoroliov.bandcamp.com/album/your-princess-is-in-another-castle">
                 your princess is in another castle + by Stas Koroliov
@@ -170,9 +176,12 @@ function App() {
           </div>
           <div className="bandcamp-card">
             <iframe
+              title="Кав'ярня album"
               style={{ border: 0, width: "350px", height: "350px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=2222093497/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
               seamless
+              loading="lazy"
+              aria-label="Album: Кав'ярня by Stas Koroliov"
             >
               <a href="https://staskoroliov.bandcamp.com/album/--2">
                 Кав'ярня + by Stas Koroliov
@@ -181,9 +190,12 @@ function App() {
           </div>
           <div className="bandcamp-card">
             <iframe
+              title="Який день війни album"
               style={{ border: 0, width: "350px", height: "350px" }}
               src="https://bandcamp.com/EmbeddedPlayer/album=301380301/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
               seamless
+              loading="lazy"
+              aria-label="Album: Який день війни by Stas Koroliov"
             >
               <a href="https://staskoroliov.bandcamp.com/album/-">
                 Який день війни + by Stas Koroliov
@@ -200,8 +212,8 @@ function App() {
         </p>
       </section>
 
-      <section className="content">
-        <h2>Другий сезон. Цифровий Утікач.</h2>
+      <section className="content" aria-labelledby="digital-fugitive-heading">
+        <h2 id="digital-fugitive-heading">Другий сезон. Цифровий Утікач.</h2>
         <p>
           В травні 2023 Стас зіграв великий сольник в Бельєтажі під назвою
           "Цифровий Утікач", на якому кожен присутній за допомогою голосування в
@@ -257,8 +269,8 @@ function App() {
         {/* <placeholder for a board game> */}
       </section>
 
-      <section className="content">
-        <h2>Третій сезон. What's next?</h2>
+      <section className="content" aria-labelledby="season-three-heading">
+        <h2 id="season-three-heading">Третій сезон. What's next?</h2>
         <p>— Стасе, що далі?</p>
         <p>
           — На жаль, в мене немає ще одного року, щоб спочатку фіналізувати
@@ -276,13 +288,14 @@ function App() {
         </p>
       </section>
 
-      <section className="content">
-        <h2>Соцмережі Стаса Корольова:</h2>
-        <div className="social-links">
+      <footer className="content" aria-labelledby="social-media-heading">
+        <h2 id="social-media-heading">Соцмережі Стаса Корольова:</h2>
+        <nav className="social-links" aria-label="Соціальні мережі">
           <a
             href="http://instagram.com/staskoroliov"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Instagram профіль Стаса Корольова"
           >
             Instagram
           </a>
@@ -290,6 +303,7 @@ function App() {
             href="https://www.facebook.com/staskoroliov"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Facebook сторінка Стаса Корольова"
           >
             Facebook
           </a>
@@ -297,6 +311,7 @@ function App() {
             href="http://youtube.com/staskoroliov"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="YouTube канал Стаса Корольова"
           >
             YouTube
           </a>
@@ -304,6 +319,7 @@ function App() {
             href="http://tiktok.com/@staskoroliov"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="TikTok Стаса Корольова"
           >
             TikTok
           </a>
@@ -311,6 +327,7 @@ function App() {
             href="https://t.me/staskoroliov"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Telegram канал Стаса Корольова"
           >
             Tg
           </a>
@@ -318,12 +335,13 @@ function App() {
             href="https://twitter.com/staskoroliov"
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="Twitter Стаса Корольова"
           >
-            Twiter
+            Twitter
           </a>
-        </div>
-      </section>
-    </div>
+        </nav>
+      </footer>
+    </main>
   );
 }
 

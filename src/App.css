@@ -33,6 +33,18 @@ html {
   /* General */
   --font-primary: "Roboto Mono", monospace;
   --font-display: "VT323", monospace;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-xxl: 3rem;
+
+  /* Container widths */
+  --container-max-width: 900px;
+  --container-narrow: 750px;
 }
 
 body {
@@ -48,7 +60,7 @@ body {
   align-items: center; /* Horizontally center .app and other direct children */
   justify-content: flex-start; /* Align content to the top */
   min-height: 100vh; /* Ensure body takes at least full viewport height */
-  padding: 2rem 1rem; /* Padding for top/bottom and sides of body content */
+  padding: var(--space-xl) var(--space-md); /* Padding for top/bottom and sides of body content */
 }
 
 body::before {
@@ -72,32 +84,42 @@ body::before {
 }
 
 .app {
-  max-width: 900px; /* Adjusted for a slightly more focused feel */
+  max-width: var(
+    --container-max-width
+  ); /* Adjusted for a slightly more focused feel */
   width: 100%; /* Ensure it takes available width up to max-width */
   margin: 0 auto; /* Still useful for block centering within the flex item if needed, or if parent wasn't flex */
-  padding: 2rem; /* Internal padding for content within .app */
+  padding: var(--space-xl); /* Internal padding for content within .app */
   position: relative; /* Ensure app content is above body scanlines if needed, though body::before is fixed */
   z-index: 1;
 }
 
 .hero {
-  margin-bottom: 3rem;
-  padding: 3rem 0;
+  margin-bottom: var(--space-xxl);
+  padding: var(--space-xxl) 0;
   text-align: center;
   border-bottom: 2px dashed var(--digital-magenta); /* Neo-retro border */
 }
 
 .hero h1 {
   font-family: var(--font-display);
-  font-size: 3rem; /* Larger for display font */
+  font-size: clamp(2rem, 5vw, 3rem); /* Responsive font size */
   font-weight: normal; /* VT323 is often best at normal weight */
   line-height: 1.3;
-  max-width: 700px;
+  max-width: var(--container-narrow);
   margin: 0 auto;
   color: var(--electric-cobalt);
   text-shadow: 1px 1px 0px var(--digital-magenta),
     -1px -1px 0px var(--terminal-green); /* Subtle RGB split effect */
   animation: textFlicker 0.1s infinite alternate;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero h1 {
+    animation: none;
+    text-shadow: 0 0 5px var(--digital-magenta);
+  }
 }
 
 @keyframes textFlicker {
@@ -112,27 +134,29 @@ body::before {
 }
 
 .content {
-  margin-bottom: 3rem;
-  padding: 1.5rem;
+  margin-bottom: var(--space-xxl);
+  padding: var(--space-lg);
   background-color: rgba(10, 14, 23, 0.5); /* Slightly transparent card bg */
   border: 1px solid var(--terminal-green);
   box-shadow: 0 0 15px rgba(51, 255, 153, 0.3);
+  border-radius: 4px; /* Subtle rounding for better visual appearance */
 }
 
 .content h2 {
   font-family: var(--font-display);
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem); /* Responsive font size */
+  margin-bottom: var(--space-lg);
   color: var(--terminal-green);
   border-bottom: 1px solid var(--synth-purple);
-  padding-bottom: 0.5rem;
+  padding-bottom: var(--space-sm);
   display: inline-block; /* So border only spans text width */
 }
 
 .content p {
-  margin-bottom: 1.2rem;
+  margin-bottom: var(--space-md);
   font-size: 1rem; /* Adjusted for Roboto Mono */
   color: var(--ghost-white);
+  max-width: 65ch; /* Optimal reading length for better readability */
 }
 
 .content p a {
@@ -148,18 +172,23 @@ body::before {
   border-bottom-color: var(--analog-orange);
 }
 
+.content p a:focus {
+  outline: 2px solid var(--neon-yellow);
+  outline-offset: 2px;
+}
+
 .social-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.8rem;
-  margin-top: 1.5rem;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
   justify-content: center; /* Center social links */
 }
 
 .social-links a {
   font-family: var(--font-display);
   font-size: 1.2rem;
-  padding: 0.6rem 1.2rem;
+  padding: var(--space-sm) var(--space-md);
   background: linear-gradient(
     145deg,
     var(--electric-cobalt),
@@ -171,6 +200,10 @@ body::before {
   border-radius: 0; /* Sharp edges for retro feel */
   transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
   box-shadow: 3px 3px 0px var(--terminal-green); /* Pixel-art like shadow */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
 }
 
 .social-links a:hover,
@@ -206,41 +239,32 @@ body::before {
 
 /* Bandcamp Embed Cards Section */
 .bandcamp-cards-container {
-  display: flex;
-  justify-content: space-around; /* Distribute space between cards */
-  align-items: flex-start; /* Align items to the top */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  gap: 1.5rem; /* Space between cards */
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-xl);
+  width: 100%;
 }
 
 .bandcamp-card {
-  background-color: rgba(
-    10,
-    14,
-    23,
-    0.6
-  ); /* Dark, slightly transparent background */
+  background-color: rgba(10, 14, 23, 0.6);
   border: 2px solid var(--electric-cobalt);
-  box-shadow: 0 0 10px rgba(0, 102, 255, 0.4); /* Glow effect with electric cobalt */
-  padding: 1rem;
-  width: clamp(280px, 100%, 320px); /* Responsive width, aiming for squarish */
-  /* To make it truly squarish with an iframe, the iframe itself usually dictates the aspect ratio.
-     The width is set here, height will be determined by iframe or additional CSS if needed.
-     Bandcamp embeds are often around 300-350px wide for the square player. */
+  box-shadow: 0 0 10px rgba(0, 102, 255, 0.4);
+  padding: var(--space-md);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 300px; /* Placeholder height, adjust based on Bandcamp widget */
+  aspect-ratio: 1 / 1; /* Create a square card */
+  overflow: hidden; /* Ensure content doesn't break layout */
 }
 
 .bandcamp-card iframe {
-  /* Common Bandcamp iframe styles - you might need to adjust based on actual embed */
   border: 0;
-  width: 100%; /* Make iframe responsive within the card */
-  min-height: 300px; /* Default squarish feel, Bandcamp may control this */
+  width: 100%;
+  height: 100%;
+  max-height: 350px;
 }
 
 .bandcamp-placeholder-text {
@@ -250,46 +274,60 @@ body::before {
   text-align: center;
 }
 
+/* Improved focus styles for keyboard navigation */
+*:focus-visible {
+  outline: 2px dashed var(--neon-yellow);
+  outline-offset: 4px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .app {
-    padding: 1.5rem;
+    padding: var(--space-md);
   }
 
-  .hero h1 {
-    font-size: 2.2rem; /* Slightly smaller on mobile */
+  .hero {
+    padding: var(--space-xl) 0;
   }
 
-  .content h2 {
-    font-size: 1.8rem;
-  }
-
-  .content p {
-    font-size: 0.95rem;
+  .content {
+    padding: var(--space-md);
   }
 
   .social-links {
-    flex-direction: column; /* Stack links on smaller screens */
-    align-items: center;
+    gap: var(--space-sm);
   }
 
   .social-links a {
-    width: 80%;
-    text-align: center;
+    min-width: 110px;
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero h1 {
-    font-size: 1.8rem;
+  .app {
+    padding: var(--space-sm);
   }
-  .content h2 {
-    font-size: 1.6rem;
-  }
-}
 
-/* Basic accessibility: focus visibility for keyboard navigation */
-*:focus-visible {
-  outline: 2px dashed var(--neon-yellow);
-  outline-offset: 2px;
+  .hero {
+    padding: var(--space-lg) 0;
+  }
+
+  .content {
+    padding: var(--space-md) var(--space-sm);
+  }
+
+  .bandcamp-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .social-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .social-links a {
+    width: 100%;
+    margin-bottom: var(--space-sm);
+  }
 }
