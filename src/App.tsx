@@ -1,4 +1,5 @@
 import "./App.css";
+import gameBoard from "./assets/images/game-board.png";
 
 function App() {
   return (
@@ -366,7 +367,7 @@ function App() {
           </a>
           " (фінальне поле гри).
         </p>
-        {/* <placeholder for a board game> */}
+        <img src={gameBoard} alt="Board game" className="game-board-image" />
       </section>
 
       <section className="content" aria-labelledby="season-three-heading">

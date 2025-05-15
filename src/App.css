@@ -278,6 +278,22 @@ body::before {
   text-align: center;
 }
 
+.game-board-image {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: var(--space-xl) auto;
+  border: 2px solid var(--electric-cobalt);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.game-board-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+}
+
 /* Improved focus styles for keyboard navigation */
 *:focus-visible {
   outline: 2px dashed var(--neon-yellow);
@@ -304,6 +320,10 @@ body::before {
 
   .bandcamp-card {
     min-height: 250px;
+  }
+
+  .game-board-image {
+    margin: var(--space-lg) auto;
   }
 
   .social-links {
@@ -335,6 +355,11 @@ body::before {
 
   .bandcamp-card {
     min-height: 300px;
+  }
+
+  .game-board-image {
+    margin: var(--space-md) auto;
+    border-width: 1px;
   }
 
   .social-links {
