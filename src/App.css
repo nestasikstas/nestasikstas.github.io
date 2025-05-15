@@ -177,6 +177,11 @@ body::before {
   outline-offset: 2px;
 }
 
+.content p span {
+  color: var(--neon-yellow);
+  font-weight: 700;
+}
+
 .social-links {
   display: flex;
   flex-wrap: wrap;
